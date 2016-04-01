@@ -21,6 +21,7 @@ import com.demo.model.Data;
 import com.demo.model.Task;
 import com.demo.service.TaskService;
 import com.demo.service.UserService;
+import com.demo.validation.TaskValidator;
 import com.google.common.collect.Lists;
 
 import java.util.Arrays;
@@ -33,8 +34,8 @@ import javax.validation.Valid;
  * Created by cqshinn on 31/03/2016.
  */
 @Controller
-public class HomeController {
-	private final static Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class TaskController {
+	private final static Logger logger = LoggerFactory.getLogger(TaskController.class);
 	
     @Autowired
     private TaskService taskService;
@@ -43,10 +44,11 @@ public class HomeController {
 	private ConversionService conversionService;
 	//Autowiring the ConversionService we declared in the context file above.
 	 
-    @InitBinder
+    @InitBinder("task")
     protected void initBinder(WebDataBinder binder){
     	if(binder.getConversionService() == null)
     		binder.setConversionService(conversionService);
+    	binder.addValidators(new TaskValidator());
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)

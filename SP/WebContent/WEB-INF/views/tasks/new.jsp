@@ -14,7 +14,7 @@
 <body>
 	<form:form action="new" method="post" commandName="task">
 		<spring:bind path="name">
-			<div class="form-group${status.error ? ' has-eror' : '' }">
+			<div class="form-group${status.error ? ' has-error' : '' }">
 				<label for="txtTaskName">Task Name</label>
 				<form:input path="name" class="form-control" id="txtTaskName" placeholder="Task Name"/>
 				<form:errors path="name" cssClass="control-label"></form:errors>

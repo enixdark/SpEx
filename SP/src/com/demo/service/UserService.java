@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -35,4 +36,9 @@ public class UserService {
 		User us = Data.users.stream().filter(u -> u.getId() == id).findFirst().get();
 		return Data.users.remove(us);
 	}
+	public File addProfileImage(Long userId, String originalFilename) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

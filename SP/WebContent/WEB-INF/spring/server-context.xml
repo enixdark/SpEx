@@ -20,6 +20,7 @@ resources	in	${webappRoot}/resources	directory	-->
 <!--  <resources	mapping="/resources/**"	location="/resources/"	/>-->
         <!--	Resolves	views	selected	for	rendering	by	@Controllers	to
                         .jsp	resources	in	the	/WEB-INF/views	directory	-->
+<!-- bean for load object from id or fields from form -->           
 <beans:bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
       <beans:property name="formatters">
            <beans:set>
@@ -27,8 +28,38 @@ resources	in	${webappRoot}/resources	directory	-->
            </beans:set>
       </beans:property>
 </beans:bean>
+
+
+<!-- bean for validate -->
+<beans:bean	id="messageSource"	class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property	name="defaultEncoding"	value="UTF-8"	/>
+		<beans:property	name="basenames"	value="classpath:validation-errors"	/>
+</beans:bean>
+
+<!-- bean for upload form -->
+<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+
+<!-- use thymeleaf engine to improve performace through cache -->
+<!-- <beans:bean	class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+			<beans:property	name="templateEngine"	ref="templateEngine"	/>
+			<beans:property	name="order"	value="1"	/>
+			<beans:property	name="viewNames"	value="*.html,*.xhtml"	/>
+</beans:bean>
+
+<beans:bean	id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+	<beans:property	name="prefix" value="/WEB-INF/templates/" />
+	<beans:property	name="suffix" value=".html"/>
+	<beans:property	name="templateMode"	value="HTML5"/>
+</beans:bean>
+
+<beans:bean	id="templateEngine"	class="org.thymeleaf.spring4.SpringTemplateEngine">
+			<beans:property	name="templateResolver"	ref="templateResolver"	/>
+</beans:bean> -->
+
+  
 <beans:bean	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 <beans:property	name="prefix" value="/WEB-INF/views/"	/>
 <beans:property	name="suffix" value=".jsp"	/>
 </beans:bean>
+
 </beans:beans>
