@@ -21,9 +21,22 @@
 			</div>
 		</spring:bind>
 		
+		<spring:bind path="priority">
+			<div class="form-group${status.error ? ' has-error' : '' }">
+				<label for="tpriority">Priority</label>
+				<form:select path="priority" id="tpriority" class="form-control">
+					<form:option value="-1" label="-- Select --"></form:option>
+					<c:forEach var="p" items="${priorities}">
+						<form:option value="${p}">${p}</form:option>
+					</c:forEach>
+				</form:select>
+				<form:errors path="priority" cssClass="control-label" />
+			</div>
+		</spring:bind>
+		
 		<div class="form-group">
 			<label for="txtComments">Comments</label>
-			<form:textarea path="comments" class="form-control" id="txtComments" placeholder="Comments" 
+			<form:textarea path="comment" class="form-control" id="txtComments" placeholder="Comments" 
 				rows="5" cols="30"/>
 		</div>
 		
@@ -31,10 +44,21 @@
 			<div class="form-group${status.error ? ' has-error' : '' }">
 				<label for="slCrtBy">Created By</label>
 				<form:select path="user" id="slCrtBy" class="form-control">
-					<form:option value="-1" label="-- Select --"></form:option>
+					<form:option value="1" label="-- Select --"></form:option>
 					<form:options items="${users}" itemValue="id" itemLabel="name"/>
 				</form:select>
 				<form:errors path="user.id" cssClass="control-label" />
+			</div>
+		</spring:bind>
+		
+		<spring:bind path="assignee.id">
+			<div class="form-group${status.error ? ' has-error' : '' }">
+				<label for="aslCrtBy">Created By</label>
+				<form:select path="assignee.id" id="aslCrtBy" class="form-control">
+					<form:option value="1" label="-- Select --"></form:option>
+					<form:options items="${assignees}" itemValue="id" itemLabel="name"/>
+				</form:select>
+				<form:errors path="assignee.id" cssClass="control-label" />
 			</div>
 		</spring:bind>
 		<button	type="submit" class="btn btn-success">Save</button>

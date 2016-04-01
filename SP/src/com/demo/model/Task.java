@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Task {
 	private static AtomicLong count = new AtomicLong(0);
+	
 	private long id;
 	private String name;
 	private int priority;

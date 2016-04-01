@@ -4,7 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 import com.demo.model.Data;
 import com.demo.model.Task;
@@ -27,7 +31,11 @@ import com.demo.model.Task;
 //}
 @Component("taskService")
 public class TaskService {
-	static UserService userService = new UserService();
+	
+	@Autowired
+	private UserService userService;
+	
+	
 	
 	public int createTask(String name, int priority, long createUserById, long assigneeId){
 		new Task(name,priority,"Test",userService.findById(createUserById), userService.findById(assigneeId));
